@@ -1,54 +1,19 @@
-body{
-   background:#eee;
+html,
+body {
+    font-family: 'Noto Sans', sans-serif;
+    height: 100%;
+    background-color: #e4ebf7;
+    color: #515974;
 }
 
 #side_nav{
    background: #1b2133;
    opacity: 1;
-   min-width: 225px;
-   max-width: 225px;
-}
-.content{
-   min-height: 100vh;
-   width: 100%;
+   min-width: 256px;
+   max-width: 256px;
 }
 
-.drawer-content {
-   padding-bottom: 40px;
-   flex: 1;
-   overflow-y: auto;
-}
-
-.drawer-content .menu-header {
-   padding: 16px 24px;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   font-size: 14px;
-   line-height: 1.4;
-   color: #515974;
-   cursor: pointer;
-}
-
-.drawer-content .menu-wrapper.expanded .menu-header svg {
-   transform: rotate(180deg);
-}
-
-.drawer-content .menu-wrapper.expanded .menu-content {
-   display: block;
-}
-
-.drawer-content .menu-header:not(:first-of-type) {
-   border-top: 1px solid #0c1224;
-}
-
-.drawer-content .menu-content {
-   margin: 0;
-   padding: 0;
-   display: none;
-}
-
-.drawer-content .menu-content li {
+#side_nav li{
    padding: 16px 24px;
    border-left: 2px solid transparent;
    font-size: 16px;
@@ -57,17 +22,64 @@ body{
    align-items: center;
 }
 
-.drawer-content .menu-content svg {
-   margin-right: 8px;
+#side_nav li:hover,
+li.selected {
+    border-left: 2px solid #f45b63;
+    background-color: #0c1224;
 }
 
-.drawer-content .menu-content a {
-   color: inherit;
-   text-decoration: none;
+.content{
+   min-height: 100vh;
+   width: 100%;
+   background: #e4ebf7;
+   opacity: 1;  
 }
 
-.drawer-content .menu-content li:hover,
-.drawer-content .menu-content li.selected {
-   border-left: 2px solid #f45b63;
-   background-color: #0c1224;
+#buvud_logo{
+   height: 18px;
+}
+
+.header-layout {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
+
+.header-layout .header {
+   padding: 24px;
+   display: flex;
+   align-items: center;
+   background-color: #f2f6fc;
+   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.header-layout .header .search {
+   margin-left: 16px;
+   border: 0;
+   flex: 1;
+   background-color: transparent;
+}
+
+.header-layout .header .actions {
+   margin-left: 24px;
+   cursor: pointer;
+}
+
+.header-layout .content {
+   overflow-y: auto;
+}
+
+#card_project_activity{
+   background: #e4ebf7;
+   opacity: 1;
+}
+
+#card_project_activity .card-body{
+   background: #f2f6fc;
+   opacity: 1;
+}
+
+#card_project_activity .card-header{
+   background: #f2f6fc;
+   opacity: 1;
 }

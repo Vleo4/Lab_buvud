@@ -69,6 +69,7 @@ function serve()
     watch ('app/js/*.js').on('change',sync.reload)
     watch('app/css/*.css', series(css)).on('change', sync.reload)
     watch ('app/sass/*.sass', series(scss)).on('change', sync.reload)
+    watch('app/img/*.png').on('change', sync.reload)
     
 }
 
