@@ -23,16 +23,12 @@ function html()
 function scss()
 {
     console.log ('This is a scss task!');
-    return gulp.src ( "app/sass/*.sass")
-    .pipe (concat ( 'styles.sass'))
-    .pipe (sass())
-    .pipe (autoprefixer ({
-    browsers: [ 'last 2 versions'],
-    cascade: false
-    }))
-    .pipe (cssnano ())
-    .pipe (rename ({suffix: '.min'}))
-    .pipe (gulp.dest ( "dist / css"))
+    return src ( "app/sass/**.scss")
+        .pipe (concat ( 'style.scss'))
+        .pipe (sass())
+        .pipe (cssnano ())
+        .pipe (rename ({suffix: '.min'}))
+        .pipe (gulp.dest ("dist/css"))
 }
 
 function css() {
@@ -68,12 +64,12 @@ function serve()
     watch ('app/*.html', series(html)).on('change',sync.reload)
     watch ('app/js/*.js').on('change',sync.reload)
     watch('app/css/*.css', series(css)).on('change', sync.reload)
-    watch ('app/sass/*.sass', series(scss)).on('change', sync.reload)
+    watch ('app/sass/*.scss', series(scss)).on('change', sync.reload)
     watch('app/img/*.png').on('change', sync.reload)
     
 }
 
-exports.build = series(html, css, scripts, image, serve)
+exports.build = series(html, scss, scripts, image, serve)
 exports.html = html
 exports.scss = scss
 exports.scripts = scripts
