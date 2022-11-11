@@ -9,6 +9,10 @@
      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.min.css">
 </head>
 
@@ -20,10 +24,19 @@
     
     <div class="header-box px-4 pt-4 pb-4" id="side_nav_header">
       <img class="logo" id="buvud_logo" src="./img/logo.png" alt="BUVUD">
-      <i class="fa-solid fa-bars"></i>  
+      <i class="fa-solid fa-bars three-stripes-btn" id="three_stripes_btn"></i>  
     </div>
+
+    <div class="sidebar_account px-4 pt-4" id="sidebar_acc">
+      <img class="sidebar-account-logo" src="./img/user-pic.png">
+      <div class="profile-name">
+        Jack<br>
+        Williams
+      </div>
+    </div>
+
     <div  class="sidebar-content" id="sidebar_content">
-      <hr class="bg-black border-1 border-top border-black">
+      
       <div class="menu-wrapper expanded" id="menu_wrapper">
         <div class="menu-header menu-trigger" id="menu_heder">
             <span class="sidebar_main_label">Main</span>
@@ -45,9 +58,9 @@
             </ul>
       </div>
 
-      <hr class="bg-black border-0 border-top border-black">
 
-      <div class="menu-wrapper" id="menu_wrapper">
+
+      <div class="menu-wrapper expanded" id="menu_wrapper">
         <div class="menu-header menu-trigger" id="menu_heder">
             <span class="sidebar_main_label">More</span>
             <i class="fa-solid fa-chevron-down"></i>
@@ -61,7 +74,7 @@
     </div>
   </div>
 
-  <div class="content">
+  <div class="content moved" id="main_page_content">
     <div class="header-layout">
       <div class="header">
           <i class="fas fa-search" id="search_ico"></i>
@@ -74,35 +87,87 @@
       </div>
     </div>
 
-    <div class="card w-90 px-3 pt-4" id="card_project_activity">
-      <div class="card-header">
-        <b class="card-title">Projects Activity</b>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Some chart</h5>
+    <div class="row px-3 pt-4">
+      <div class="col-sm-12">
+        <div class="card w-90" id="card_project_activity">
+          <div class="card-header">
+            <b class="card-title">Projects Activity</b>
+          </div>
+          <div class="card-body">
+            <button type="button" class="btn btn-outline-secondary rounded-pill px-3 mx-2">
+              <span class= "px-1">Month</span>
+              <i class="fas fa-angle-down"></i>
+            </button>
+
+            <button type="button" class="btn btn-outline-secondary rounded-pill px-3 mx-2">
+              <span class= "px-1">Range</span>
+              <i class="fas fa-angle-down"></i>
+            </button>
+
+            <button type="button" class="btn btn-primary rounded-pill px-3 mx-2">
+              <span class= "px-1">Last</span>
+              <i class="fas fa-angle-down"></i>
+            </button>
+
+            <button type="button" class="btn btn-danger rounded-pill px-3 mx-2">
+              <span class= "px-1">Current</span>
+              <i class="fas fa-angle-down"></i>
+            </button>
+
+            <canvas id="ProjectActivityChart"></canvas>
+          </div>
+        </div>
       </div>
     </div>
-
+    
     <div class="row px-3 pt-4">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <div class="card">
           <div class="card-header">
             <b class="card-title">Involved team</b>
           </div>
-          <div class="card-body">
-            <p class="card-text">With supporting text</p>
+          <div class="card-body" id="involved_team_card">
+            <div class="people-list">
+              <div class="person">
+                <img src="./img/user-pic.png" alt="" class="person-pic">
+                  <div class="person-details">
+                      <h4 class="person-name">Jack Williams</h4>
+                      <div class="person-title">UI/UX Designer</div>
+                  </div>
+              </div>
+              <div class="person">
+                <img src="./img/2.png" alt="" class="person-pic">
+                  <div class="person-details">
+                      <h4 class="person-name">Yulia Beckinsale</h4>
+                      <div class="person-title">Project Manager</div>
+                  </div>
+              </div>
+              <div class="person">
+                <img src="./img/3.png" alt="" class="person-pic">
+                  <div class="person-details">
+                      <h4 class="person-name">Mickey Thompson</h4>
+                      <div class="person-title">Developer</div>
+                  </div>
+              </div>
+              <div class="person">
+                <img src="./img/4.png" alt="" class="person-pic">
+                  <div class="person-details">
+                      <h4 class="person-name">Bogdan Deegan</h4>
+                      <div class="person-title">Web Designer</div>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-8">
+      <div class="col-sm-9">
         <div class="card">
           <div class="card-header">
             <b class="card-title">Managers Activity</b>
           </div>
           <div class="card-body">
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <canvas id="ManagersActivityChart"></canvas>
           </div>
         </div>
       </div>
@@ -116,7 +181,7 @@
             <b class="card-title">Visits</b>
           </div>
           <div class="card-body">
-            <p class="card-text">With supporting text</p>
+            <canvas id="VisitsChart"></canvas>
           </div>
         </div>
       </div>
@@ -127,17 +192,351 @@
             <b class="card-title">Messages</b>
           </div>
           <div class="card-body">
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">NEW MESSAGE!!</a>
+            <div class="people-messages">
+              <div class="user-message-content">
+                  <div class="person-message">
+                      <img src="./img/2.png" alt="" class="person-pic">
+                          <span class="triangle-left"></span>
+                          <span class="message user-message1">Yea, i did not see you before. I'm ok. So, how do you feel
+                          about going out for a beer today??
+                      </span>
+                  </div>
+                  <div class="messages-info user-info1">16:48, 22 October, 2015</div>
+              </div>
+
+              <div class="user-message-content">
+                  <div class="person-message">
+                      <span class="message user-message2"><p>Hi, Yulia! It is great to work side by
+                                          side with you! That is great idea we can meet
+                                          by the office at 6 p.m. I know a cool place to go!
+                                          You are very beautiful today btw))
+                                          <br>Jeff Bezos. Pretty cool =)</p>
+                      </span>
+                      <span class="triangle-right"></span>
+                      <img src="./img/4.png" alt="" class="person-pic">
+                  </div>
+                  <div class="messages-info user-info2">12 minutes ago</div>
+              </div>
+          </div>
           </div>
         </div>
       </div>
 
     </div>
 
+    <div class="row px-3 pt-4">
+      <div class="col-sm-5">
+        <div class="card">
+          <div class="card-header">
+            <b class="card-title">Implementation</b>
+          </div>
+          <div class="card-body">
+            <div class="implimentation-list">
+              <div class="info px-2 justify-content-between">
+                  <span>Date</span>
+                  <span>Description</span>
+                  <span>Balance</span>
+              </div>
+
+              <div class="info-description-content">
+                  <div class="info-date">
+                      <h4 class="info-month">16 August</h4>
+                      <div class="info-week">Saturday</div>
+                  </div>
+                  <div class="info-description">
+                      <span class="info-description_text">Recharge</span>
+                  </div>
+
+                  <div class="bg-success rounded-pill text-white px-2 ms-5 icon-right align-self-center justify-content-start">
+                    <span>+234$</span>
+                  </div>
+
+              </div>
+              <div class="info-description-content">
+                  <div class="info-date">
+                      <h4 class="info-month">14 August</h4>
+                      <div class="info-week">Thusday</div>
+                  </div>
+                  <div class="info-description">
+                    <span class="info-description_text">Purchase of office paper</span>
+                  </div>
+
+                  <div class="bg-danger rounded-pill text-white ms-5 px-2 icon-right align-self-center justify-content-start">
+                    <span>-175$</span>
+                  </div>
+              </div>
+              <div class="info-description-content">
+                  <div class="info-date">
+                      <h4 class="info-month">12 August</h4>
+                      <div class="info-week">Tuesday</div>
+                  </div>
+                  <div class="info-description">
+                      <span class="info-description_text">Payment for hosting</span>
+                  </div>
+
+                  <div class="bg-danger rounded-pill text-white ms-5 px-2 icon-right align-self-center justify-content-start">
+                    <span>-3920$</span>
+                  </div>
+              </div>
+              <div class="info-description-content">
+                  <div class="info-date">
+                      <h4 class="info-month">11 August</h4>
+                      <div class="info-week">Monday</div>
+                  </div>
+                  <div class="info-description">
+                      <span class="info-description_text">Recharge</span>
+                  </div>
+
+                  <div class="bg-success rounded-pill text-white px-2 ms-5 icon-right align-self-center justify-content-start">
+                    <span>+764$</span>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-7">
+        <div class="card">
+          <div class="card-header">
+            <b class="card-title">Client activity</b>
+          </div>
+          <div class="card-body">
+            <div class="info justify-content-between px-2">
+              <div>User</div>
+              <div>
+                  <span class="info-user">Visits</span>
+                  <span class="info-user">Purchases</span>
+                  <span class="info-user">Calls</span>
+                  <span class="info-user">Total Profit</span>
+              </div>
+          </div>
+          <div class="client-content">
+
+                  <img src="./img/3.png" alt="" class="person-pic">
+                  <span class="person-name">Angelina Vitale</span>
+
+              <span>287</span>
+              <span>34</span>
+              <span>52</span>
+              <span class="text-success">5 946 $</span>
+          </div>
+          <div class="client-content ">
+
+                  <img src="./img/2.png" alt="" class="person-pic">
+                  <span class="person-name">Edmonia Lewis</span>
+
+              <span>159</span>
+              <span>12</span>
+              <span>252</span>
+              <span class="text-success">1 039 $</span>
+          </div>
+          <div class="client-content">
+            <img src="./img/4.png" alt="" class="person-pic">
+            <span class="person-name">Lawanda And</span>
+            <span>94</span>
+            <span>3</span>
+            <span>28</span>
+            <span class="text-success">205 $</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!--MAIL -->
+    <div class="row px-3 pt-4">
+      <div class="col-sm-12">
+        <div class="card w-90" id="card_project_activity">
+          <div class="card-header">
+            <b class="card-title">Mail</b>
+          </div>
+
+          <div class="card-body">
+            <div class="mail-container">
+              <div class="mail-menu">
+                <div class="mail-menu_header">
+                  <div class="mail_person">
+                    <img src="./img/first_profile.png" alt="" class="person-pic">
+                    <div class="mail_person-details">
+                      <h4 class="mail_person-name">Jack Williams</h4>
+                      <div class="mail_person-title">jackwilliams@gmail.com</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-content-actions">
+                  <div class="bg-danger rounded-pill text-white m-3">
+                      <span class="mail-menu-btn align-items-center">New</span>
+                  </div>
+                </div>
+                <div class="mail-menu-content">
+                  <div class="mail">
+                    <ul class="menu-cont" id="lol">
+                      <li>
+                        <a href="#"><i class="fas fa-home"></i> Inbox</a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fas fa-book"></i> Sent Mail</a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="far fa-comment"></i> Important</a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fas fa-chart-line"></i> Drafts</a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fas fa-clipboard-list"></i> Trash</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="menu-wrapper expanded">
+                    <div class="menu-header menu-trigger mail-wrapper">
+                        <span class="mail-menu_title">Labels</span>
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+
+                    <ul class="menu-cont list">
+                      <li>
+                        <a href="#"><i class="far fa-circle text-primary"></i>Work</a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="far fa-circle text-success"></i>Family</a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="far fa-circle text-danger"></i>Friends</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="mail-content">
+                <div class="mail-content_header">
+                    <div class="mail-header_header-title"><p class="mail_header-title">Inbox</p></div>
+                    <div class="mail-header_header-input">
+                        <i class="fas fa-search"></i>
+                        <input class="search" type="text" placeholder="Search ...">
+                    </div>
+                </div>
+
+                <div class="mail_btn-group">
+                  <div class="btn-group">
+                      <div class="btn icon-right mail-btn">
+                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                          <span>All</span>
+                      </div>
+                      <div class="btn icon-right mail-btn">
+                          <span>Mark</span>
+                          <i class="fas fa-angle-down"></i>
+                      </div>
+                      <div class="btn icon-right mail-btn">
+                          <span>More</span>
+                          <i class="fas fa-angle-down"></i>
+                      </div>
+                  </div>
+                  <div class="btn-group">
+                      <div class="btn icon-right mail-btn">
+                          <span>Show</span>
+                          <i class="fas fa-angle-down"></i>
+                      </div>
+                      <span class="mail-title pt-2">1-50 of 471</span>
+                      <div class="btn icon-right mail-btn">
+                          <i class="fas fa-angle-left"></i>
+                      </div>
+                      <div class="btn icon-right mail-btn">
+                          <i class="fas fa-angle-right"></i>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="mail-content_mail-box">
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title text-bold px-2">Mansion Tech</span>
+                      </div>
+                      <div class="mail-title text-bold message_flex-position-left">New Tasks</div>
+                      <span class="mail-title text-bold">11:48 AM</span>
+                  </div>
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title text-bold px-2">Blurpix Studio</span>
+                      </div>
+                      <div class="mail-title text-bold message_flex-position-left">Hi man, How are you?</div>
+                      <span class="mail-title text-bold">Sep 19</span>
+                  </div>
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title px-2">Facebook</span>
+                      </div>
+                      <div class="mail-title message_flex-position-left">Lorem ipsum dolor sit amet</div>
+                      <span class="mail-title">Sep 17</span>
+                  </div>
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title px-2">Twitter</span>
+                      </div>
+                      <div class="mail-title message_flex-position-left">Dolor sit amet, consectetuer adipiscing</div>
+                      <span class="mail-title">Sep 16</span>
+                  </div>
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title px-2">Virtual Box</span>
+                      </div>
+                      <div class="mail-title message_flex-position-left">Donald Markus and his story.</div>
+                      <span class="mail-title">Sep 09</span>
+                  </div>
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title px-2">Apple Wision</span>
+                      </div>
+                      <div class="mail-title message_flex-position-left">Hello, where are you?</div>
+                      <span class="mail-title">Aug 28</span>
+                  </div>
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title px-2">Max Drone</span>
+                      </div>
+                      <div class="mail-title message_flex-position-left">Boxoffice and paper docs</div>
+                      <span class="mail-title">Aug 27</span>
+                  </div>
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title px-2">Timeweb</span>
+                      </div>
+                      <div class="mail-title message_flex-position-left">Financial statistic</div>
+                      <span class="mail-title">Aug 22</span>
+                  </div>
+                  <div class="mail-box_message">
+                      <div class="message_flex-position">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <span class="mail-title px-2">Bill Markel</span>
+                      </div>
+                      <div class="mail-title message_flex-position-left">Client Activity Status</div>
+                      <span class="mail-title">Aug 24</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3 col-md-12"> </div>
   </div>
 </div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.0/chart.js"></script>
 <script src="./js/scripts.min.js"></script>
 </body>
 

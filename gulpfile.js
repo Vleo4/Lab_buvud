@@ -43,6 +43,12 @@ function image()
 		.pipe(gulp.dest('dist/img'))
 }
 
+function jsson()
+{
+    return src ("app/**.json")
+    .pipe (gulp.dest ("dist"))
+}
+
 function scripts()
 {
     console.log ('This is a scripts task!');
@@ -62,14 +68,14 @@ function serve()
     })
 
     watch ('app/*.html', series(html)).on('change',sync.reload)
-    watch ('app/js/*.js').on('change',sync.reload)
+    watch ('app/js/*.js', series(scripts)).on('change',sync.reload)
     watch('app/css/*.css', series(css)).on('change', sync.reload)
     watch ('app/sass/*.scss', series(scss)).on('change', sync.reload)
-    watch('app/img/*.png').on('change', sync.reload)
+    watch('app/img/*.png', series(image)).on('change', sync.reload)
     
 }
 
-exports.build = series(html, scss, scripts, image, serve)
+exports.build = series(html, scss, scripts, jsson , image, serve)
 exports.html = html
 exports.scss = scss
 exports.scripts = scripts
