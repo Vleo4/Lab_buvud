@@ -33,7 +33,8 @@ let PAChart= new Chart(ctx, {
         tension:0.5,
         fill: true,
         data: [],
-        pointRadius: 7,
+        pointRadius:[0,7,7,7,7,7,0],
+        
         pointBackgroundColor: 'gray',
       }, {
         label: 'My Second dataset',
